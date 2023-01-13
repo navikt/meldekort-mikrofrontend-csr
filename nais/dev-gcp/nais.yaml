@@ -2,28 +2,28 @@ apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
   name: meldekort-mikrofrontend
-  namespace: min-side
+  namespace: meldekort
   labels:
-    team: min-side
+    team: meldekort
 spec:
   envFrom:
     - secret: meldekort-mikrofrontend-secrets
   image: {{ image }}
   port: 7800
   liveness:
-    path: /tms-meldekort-mikrofrontend/internal/isAlive
+    path: /meldekort-mikrofrontend/internal/isAlive
     initialDelay: 10
   readiness:
-    path: /tms-meldekort-mikrofrontend/internal/isReady
+    path: /meldekort-mikrofrontend/internal/isReady
     initialDelay: 10
   prometheus:
     enabled: true
-    path: /tms-meldekort-mikrofrontend/internal/metrics
+    path: /meldekort-mikrofrontend/internal/metrics
   replicas:
     min: 2
     max: 4
   ingresses:
-    - "https://www.dev.nav.no/tms-meldekort-mikrofrontend"
+    - "https://www.dev.nav.no/meldekort-mikrofrontend"
   resources:
     limits:
       cpu: "3"

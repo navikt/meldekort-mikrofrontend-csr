@@ -1,11 +1,14 @@
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
 const expressStaticGzip = require("express-static-gzip");
-const basePath = "/tms-meldekort-mikrofrontend";
-const buildPath = path.resolve(__dirname, "../dist");
-const server = express();
+
 const corsAllowedOrigin = process.env.CORS_ALLOWED_ORIGIN || "http://localhost:3000";
+const basePath = "/meldekort-mikrofrontend";
+const buildPath = path.resolve(__dirname, "../dist");
+const port = 7800;
+
+const server = express();
 
 server.use(cors({ origin: corsAllowedOrigin }));
 
@@ -25,4 +28,4 @@ server.get(`${basePath}/internal/isReady`, (req, res) => {
   res.sendStatus(200);
 });
 
-server.listen(7800, () => console.log("Server listening on port 7100"));
+server.listen(port, () => console.log("Server listening on port " + port));

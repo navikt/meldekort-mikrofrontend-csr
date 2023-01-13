@@ -5,7 +5,7 @@ on:
       - "main"
       - "dev-*"
 env:
-  "IMAGE": "ghcr.io/${{ github.repository }}/tms-meldekort-mikrofrontend:${{ github.sha }}"
+  "IMAGE": "ghcr.io/${{ github.repository }}/meldekort-mikrofrontend:${{ github.sha }}"
 jobs:
   build:
     name: "build"

@@ -1,4 +1,3 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { viteMockServe } from "vite-plugin-mock";
 import { ConfigEnv } from "vite";
@@ -42,9 +41,9 @@ export default ({ command }: ConfigEnv): UserConfigExport => ({
   build: {
     lib: {
       entry: resolve(__dirname, "src/Mikrofrontend.tsx"),
-      name: "tms-meldekort-mikrofrontend",
+      name: "meldekort-mikrofrontend",
       formats: ["es"],
-      fileName: () => `tms-meldekort-mikrofrontend.js`,
+      fileName: () => `meldekort-mikrofrontend.js`,
     },
   },
   test: {
