@@ -6,8 +6,8 @@ metadata:
   labels:
     team: meldekort
 spec:
-  envFrom:
-    - secret: meldekort-mikrofrontend-secrets
+  #envFrom:
+  #  - secret: meldekort-mikrofrontend-secrets
   image: {{ image }}
   port: 7800
   liveness:
