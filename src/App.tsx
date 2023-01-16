@@ -1,4 +1,4 @@
-import useSwr from "swr";
+import useSWRImmutable from "swr/immutable";
 import { Heading } from "@navikt/ds-react";
 import { IntlShape, useIntl } from "react-intl";
 import { MeldekortData } from "./types/MeldekortType";
@@ -12,7 +12,7 @@ import styles from "./App.module.css";
 import "@navikt/ds-css";
 
 function App() {
-  const { data: meldekort, error } = useSwr<MeldekortData>(meldekortApiUrl, fetcher);
+  const { data: meldekort, error } = useSWRImmutable<MeldekortData>(meldekortApiUrl, fetcher);
   const { formatMessage }: IntlShape = useIntl();
 
   if (!meldekort) {
