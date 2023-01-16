@@ -39,6 +39,7 @@ function App() {
         {isPendingForInnsending ? <MeldekortPending meldekort={meldekort} /> : null}
         {isReadyForInnsending ? <MeldekortReady meldekort={meldekort} /> : null}
       </div>
+      !!!!
     </section>
   );
 }
