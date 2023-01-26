@@ -23,7 +23,7 @@ const MELDEKORT_API_URL: EnvUrl = {
 
 const MELDEKORT_URL: EnvUrl = {
   local: "http://localhost:3000/meldekort",
-  development: "https://www.dev.nav.no/meldekort",
+  development: "https://meldekort-frontend-q2.dev.nav.no/meldekort",
   production: "https://www.nav.no/meldekort",
 };
 
