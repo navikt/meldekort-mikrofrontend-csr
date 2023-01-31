@@ -1,9 +1,9 @@
 import useSWRImmutable from "swr/immutable";
 import { Heading } from "@navikt/ds-react";
 import { IntlShape, useIntl } from "react-intl";
-import { MeldekortData } from "./types/MeldekortType";
+import { MeldekortDataFraApi } from "./types/MeldekortType";
 import { meldekortApiUrl } from "./api/urls";
-import { meldekortState } from "./domain/meldekortState";
+import { isMeldekortbruker, meldekortState } from "./domain/meldekortState";
 import { fetcher } from "./api/api";
 import MeldekortEtterregistrering from "./domain/meldekort-etterregistrering/MeldekortEtterregistrering";
 import MeldekortPending from "./domain/meldekort-pending/MeldekortPending";
@@ -12,10 +12,10 @@ import styles from "./App.module.css";
 import "@navikt/ds-css";
 
 function App() {
-  const { data: meldekort, error } = useSWRImmutable<MeldekortData>(meldekortApiUrl, fetcher);
+  const { data: meldekortFraApi, error } = useSWRImmutable<MeldekortDataFraApi>(meldekortApiUrl, fetcher);
   const { formatMessage }: IntlShape = useIntl();
 
-  if (!meldekort) {
+  if (!meldekortFraApi) {
     return null;
   }
 
@@ -23,11 +23,11 @@ function App() {
     throw Error("Klarte ikke å hente meldekortdata");
   }
 
-  if (!meldekort.meldekortbruker) {
+  if (!isMeldekortbruker(meldekortFraApi)) {
     return null;
   }
 
-  const [isPendingForInnsending, isReadyForInnsending] = meldekortState(meldekort);
+  const { isPendingForInnsending, isReadyForInnsending, meldekortData } = meldekortState(meldekortFraApi);
 
   return (
     <section className={styles.meldekort}>
@@ -35,9 +35,9 @@ function App() {
         {formatMessage({ id: "meldekort.tittel" })}
       </Heading>
       <div className={styles.container}>
-        <MeldekortEtterregistrering meldekort={meldekort} />
-        {isPendingForInnsending ? <MeldekortPending meldekort={meldekort} /> : null}
-        {isReadyForInnsending ? <MeldekortReady meldekort={meldekort} /> : null}
+        <MeldekortEtterregistrering meldekort={meldekortData} />
+        {isPendingForInnsending ? <MeldekortPending meldekort={meldekortData} /> : null}
+        {isReadyForInnsending ? <MeldekortReady meldekort={meldekortData} /> : null}
       </div>
     </section>
   );

@@ -17,13 +17,13 @@ type EnvUrl = { local: string; development: string; production: string };
 
 const MELDEKORT_API_URL: EnvUrl = {
   local: "http://localhost:3000/api/meldekortinfo",
-  development: "https://www.dev.nav.no/dittnav-api/meldekortinfo",
-  production: "https://www.nav.no/dittnav-api/meldekortinfo",
+  development: "https://www.dev.nav.no/tms-min-side-proxy/meldekort/api/person/meldekortstatus",
+  production: "https://www.nav.no/tms-min-side-proxy/meldekort/api/person/meldekortstatus",
 };
 
 const MELDEKORT_URL: EnvUrl = {
   local: "http://localhost:3000/meldekort",
-  development: "https://www.dev.nav.no/meldekort",
+  development: "https://meldekort-frontend-q2.dev.nav.no/meldekort",
   production: "https://www.nav.no/meldekort",
 };
 
