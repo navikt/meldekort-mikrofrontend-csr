@@ -1,12 +1,12 @@
 {
   "meldekort.tittel": "Meldekort",
   "meldekort.ett": "Send inn meldekort",
-  "meldekort.flere": "Du har {count} meldekort klare for innsending ",
+  "meldekort.flere": "Du har {count} meldekort klare til innsending ",
   "meldekort.dato": "Veke {next} ({from} - {until})",
-  "meldekort.label.etterregistrering": "Du må senda {count} meldekort",
-  "meldekort.label.ready": "Klart for innsending",
+  "meldekort.label.etterregistrering": "Du må sende {count} meldekort",
+  "meldekort.label.ready": "Klart til innsending",
   "meldekort.melding.fremtidig": "Neste meldekort kan sendast frå {dato} ",
   "meldekort.etterregistreringer": "Du har fått vedtak for ein periode du ikkje har sendt meldekort.",
-  "meldekort.etterregistreringer.label": "Du må senda {etterregistreringer} meldekort.",
+  "meldekort.etterregistreringer.label": "Du må sende {etterregistreringer} meldekort.",
   "meldekort.info.om.trekk": "Siste frist før trekk: {dato}"
 }
