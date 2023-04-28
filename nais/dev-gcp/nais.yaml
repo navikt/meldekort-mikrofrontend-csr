@@ -23,7 +23,7 @@ spec:
     min: 2
     max: 4
   ingresses:
-    - "https://www.dev.nav.no/meldekort-mikrofrontend"
+    - "https://www.intern.dev.nav.no/meldekort-mikrofrontend"
   resources:
     limits:
       memory: 512Mi
