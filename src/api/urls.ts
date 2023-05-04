@@ -17,7 +17,7 @@ type EnvUrl = { local: string; development: string; production: string };
 
 const MELDEKORT_API_URL: EnvUrl = {
   local: "http://localhost:3000/api/meldekortinfo",
-  development: "https://www.dev.nav.no/tms-min-side-proxy/meldekort/api/person/meldekortstatus",
+  development: "https://www.intern.dev.nav.no/tms-min-side-proxy/meldekort/api/person/meldekortstatus",
   production: "https://www.nav.no/tms-min-side-proxy/meldekort/api/person/meldekortstatus",
 };
 
