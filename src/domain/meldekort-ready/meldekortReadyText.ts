@@ -1,5 +1,5 @@
 import { MeldekortData } from "../../types/MeldekortType";
-import { formatDayAndMonth, numberToWord } from "../../language/i18";
+import { formatDayAndMonth } from "../../language/i18";
 import { IntlShape, useIntl } from "react-intl";
 
 export const createReadyForInnsendingText = (meldekort: MeldekortData) => {
@@ -11,7 +11,7 @@ export const createReadyForInnsendingText = (meldekort: MeldekortData) => {
           id: meldekort.nyeMeldekort?.antallNyeMeldekort === 1 ? "meldekort.ett" : "meldekort.flere",
         },
         {
-          count: numberToWord(meldekort.nyeMeldekort?.antallNyeMeldekort),
+          count: meldekort.nyeMeldekort?.antallNyeMeldekort,
         }
       )
     : "";

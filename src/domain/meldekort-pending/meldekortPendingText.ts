@@ -1,5 +1,5 @@
 import { MeldekortData } from "../../types/MeldekortType";
-import { formatDateMonth } from "../../language/i18";
+import { formatDayAndMonth } from "../../language/i18";
 import { IntlShape, useIntl } from "react-intl";
 
 export const createPendingForInnsendingText = (meldekort: MeldekortData) => {
@@ -8,7 +8,7 @@ export const createPendingForInnsendingText = (meldekort: MeldekortData) => {
   return meldekort.nyeMeldekort?.nesteInnsendingAvMeldekort
     ? formatMessage(
         { id: "meldekort.melding.fremtidig" },
-        { dato: formatDateMonth(meldekort.nyeMeldekort?.nesteInnsendingAvMeldekort) }
+        { dato: formatDayAndMonth(meldekort.nyeMeldekort?.nesteInnsendingAvMeldekort) }
       )
     : "";
 };
