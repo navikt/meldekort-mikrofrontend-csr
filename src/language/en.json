@@ -1,7 +1,12 @@
 {
-  "meldekort.flere": "Du har {count} meldekort klare for innsending ",
-  "meldekort.melding.fremtidig": "Neste meldekort kan sendes fra {dato} ",
-  "meldekort.etterregistreringer": "Du har fått vedtak for en periode du ikke har sendt meldekort. Du må sende {etterregistreringer} meldekort. ",
-  "meldekort.ett": "Du har ett meldekort for uke {next} ({from}-{until}) klart for innsending ",
-  "meldekort.info.om.trekk": "(Siste innsendingsfrist før trekk: {dato}) "
+  "meldekort.tittel": "Employment status form",
+  "meldekort.ett": "Submit employment status form",
+  "meldekort.flere": "You have {count} employment status forms ready to be sent ",
+  "meldekort.dato": "Week {next} ({from} - {until})",
+  "meldekort.label.etterregistrering": "You must send {count} employment status forms",
+  "meldekort.label.ready": "Ready to be sent",
+  "meldekort.melding.fremtidig": "The next employment status form can be sent on {dato} ",
+  "meldekort.etterregistreringer": "You have received a decision for a period in which you have not sent employment status form.",
+  "meldekort.etterregistreringer.label": "You must send {etterregistreringer} employment status forms.",
+  "meldekort.info.om.trekk": "The final submission deadline without reduced payout: {dato}"
 }
