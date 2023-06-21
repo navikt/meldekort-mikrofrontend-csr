@@ -9,7 +9,6 @@ import MeldekortEtterregistrering from "./domain/meldekort-etterregistrering/Mel
 import MeldekortPending from "./domain/meldekort-pending/MeldekortPending";
 import MeldekortReady from "./domain/meldekort-ready/MeldekortReady";
 import styles from "./App.module.css";
-import "@navikt/ds-css";
 
 function App() {
   const { data: meldekortFraApi, error } = useSWRImmutable<MeldekortDataFraApi>(meldekortApiUrl, fetcher);

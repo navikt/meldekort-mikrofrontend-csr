@@ -6,8 +6,8 @@
   height: auto;
   padding: 6px 10px;
   border-radius: 4px;
-  background: var(--navds-global-color-orange-200);
-  color: var(--navds-global-color-orange-900);
+  background: var(--a-orange-200);
+  color: var(--a-orange-900);
 }
 
 .tekst {
