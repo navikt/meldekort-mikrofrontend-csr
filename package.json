@@ -46,7 +46,7 @@
     "vite-plugin-css-injected-by-js": "1.4.0",
     "vite-plugin-environment": "1.1.2",
     "vite-plugin-mock": "2.9.6",
-    "vitest": "0.13.1"
+    "vitest": "0.34.1"
   },
   "prettier": {
     "printWidth": 120
