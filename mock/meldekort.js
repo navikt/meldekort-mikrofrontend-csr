@@ -14,7 +14,7 @@ export default [
           kanSendesFra: "2019-09-21",
           risikererTrekk: false,
           sisteDatoForTrekk: "2019-09-30",
-          til: "2019-09-22",
+          til: "2024-09-22",
           uke: "37-38",
         },
       };

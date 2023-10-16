@@ -27,14 +27,6 @@ const LinkCard = ({ href, warning, children }: Props) => {
       <div className={styles.contentContainer}>{children}</div>
     </a>
   );
-
-  /*
-  return (
-    <a id={styles.linkcard} className={`navds-panel navds-link-panel`} href={href}>
-      <div className="navds-link-panel__content">{children}</div>
-      <ChevronRightIcon id={styles.linkcardChevron} className="navds-link-panel__chevron" />
-    </a>
-  ); */
 };
 
 export default LinkCard;
