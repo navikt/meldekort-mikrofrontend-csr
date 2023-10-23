@@ -1,6 +1,7 @@
-import { Alert } from "@navikt/ds-react";
+import { BodyLong } from "@navikt/ds-react";
 import { meldekortUrl } from "../../api/urls";
 import LinkCard from "../../components/card/LinkCard";
+import styles from "../../components/card/LinkCard.module.css";
 import { MeldekortData } from "../../types/MeldekortType";
 import { createPendingForInnsendingText } from "./meldekortPendingText";
 
@@ -13,9 +14,7 @@ const MeldekortPending = ({ meldekort }: Props) => {
 
   return (
     <LinkCard href={meldekortUrl}>
-      <Alert inline variant="info" size="small">
-        {title}
-      </Alert>
+      <BodyLong className={styles.text}>{title}</BodyLong>
     </LinkCard>
   );
 };
