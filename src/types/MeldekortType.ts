@@ -21,16 +21,16 @@ export interface MeldekortData {
 }
 
 interface NesteMeldekortFraApi {
-  uke: string;
-  kanSendesFra: string;
   fra: string;
+  kanSendesFra: string;
   til: string;
+  uke: string;
 }
 
 export interface MeldekortDataFraApi {
-  meldekort: number;
-  etterregistrerteMeldekort: number;
   antallGjenstaaendeFeriedager: number;
-  nesteMeldekort: NesteMeldekortFraApi | null;
+  etterregistrerteMeldekort: number;
+  meldekort: number;
   nesteInnsendingAvMeldekort: string | null;
+  nesteMeldekort: NesteMeldekortFraApi | null;
 }

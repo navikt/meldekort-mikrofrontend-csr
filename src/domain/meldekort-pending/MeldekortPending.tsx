@@ -1,8 +1,9 @@
+import { BodyLong } from "@navikt/ds-react";
 import { meldekortUrl } from "../../api/urls";
-import { MeldekortData } from "../../types/MeldekortType";
-import { BodyShort, LinkPanel } from "@navikt/ds-react";
-import { createPendingForInnsendingText } from "./meldekortPendingText";
+import LinkCard from "../../components/card/LinkCard";
 import styles from "../../components/card/LinkCard.module.css";
+import { MeldekortData } from "../../types/MeldekortType";
+import { createPendingForInnsendingText } from "./meldekortPendingText";
 
 interface Props {
   meldekort: MeldekortData;
@@ -12,9 +13,9 @@ const MeldekortPending = ({ meldekort }: Props) => {
   const title = createPendingForInnsendingText(meldekort);
 
   return (
-    <LinkPanel id={styles.linkpanel} border={false} href={meldekortUrl}>
-      <BodyShort>{title}</BodyShort>
-    </LinkPanel>
+    <LinkCard href={meldekortUrl}>
+      <BodyLong className={styles.text}>{title}</BodyLong>
+    </LinkCard>
   );
 };
 

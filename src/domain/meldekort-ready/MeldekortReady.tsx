@@ -1,10 +1,9 @@
+import { Alert, BodyLong } from "@navikt/ds-react";
 import { meldekortUrl } from "../../api/urls";
-import { MeldekortData } from "../../types/MeldekortType";
-import { BodyShort, LinkPanel } from "@navikt/ds-react";
-import { createDatoLabel, createReadyForInnsendingText, createRisikererTrekkDescription } from "./meldekortReadyText";
-import Label from "../../components/label/Label";
 import LinkCard from "../../components/card/LinkCard";
 import styles from "../../components/card/LinkCard.module.css";
+import { MeldekortData } from "../../types/MeldekortType";
+import { createDatoLabel, createReadyForInnsendingText, createRisikererTrekkDescription } from "./meldekortReadyText";
 
 interface Props {
   meldekort: MeldekortData;
@@ -19,11 +18,10 @@ const MeldekortReady = ({ meldekort }: Props) => {
   return (
     <LinkCard href={meldekortUrl}>
       <>
-        <BodyShort>{title}</BodyShort>
-        <LinkPanel.Description className={styles.dato}>
+        <BodyLong className={styles.text}>{title}</BodyLong>
+        <Alert inline variant="info" size="small">
           {risikererTrekk ? risikererTrekkDescription : dato}
-        </LinkPanel.Description>
-        <Label textId="meldekort.label.ready" />
+        </Alert>
       </>
     </LinkCard>
   );
