@@ -14,7 +14,7 @@
     "@navikt/aksel-icons": "6.1.0",
     "@navikt/ds-react": "6.1.0",
     "@navikt/nav-dekoratoren-moduler": "^2.1.5",
-    "dayjs": "1.11.10",
+    "dayjs": "1.11.11",
     "react": "18.3.1",
     "react-dom": "18.2.0",
     "react-intl": "6.6.6",
