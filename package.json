@@ -40,7 +40,7 @@
     "pretty-quick": "4.0.0",
     "rollup-plugin-import-map": "^2.2.2",
     "rollup-plugin-terser": "7.0.2",
-    "typescript": "5.5.3",
+    "typescript": "5.5.4",
     "vite": "5.3.4",
     "vite-plugin-compression": "0.5.1",
     "vite-plugin-css-injected-by-js": "3.5.1",
