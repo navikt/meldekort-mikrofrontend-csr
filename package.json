@@ -6,7 +6,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "prepare": "husky install",
+    "prepare": "husky",
     "lint": "eslint --fix --ext .ts,.tsx,.js,.jsx .",
     "pretty-quick": "pretty-quick --pattern \"**/*.*(ts|tsx)\""
   },
