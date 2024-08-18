@@ -35,7 +35,7 @@
     "eslint-plugin-react": "7.35.0",
     "husky": "9.1.4",
     "jsdom": "24.1.1",
-    "lint-staged": "15.2.8",
+    "lint-staged": "15.2.9",
     "prettier": "^3.3.3",
     "pretty-quick": "4.0.0",
     "rollup-plugin-import-map": "^2.2.2",
