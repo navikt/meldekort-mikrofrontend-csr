@@ -5,6 +5,7 @@ import * as path from "path";
 
 const corsAllowedOrigin = process.env.CORS_ALLOWED_ORIGIN || "http://localhost:3000";
 const basePath = "/meldekort-mikrofrontend";
+const __dirname = import.meta.dirname;
 const buildPath = path.resolve(__dirname, "../dist");
 const port = 7800;
 
