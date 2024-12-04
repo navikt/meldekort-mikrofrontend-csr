@@ -1,11 +1,10 @@
-import * as cors from "cors";
-import * as express from "express";
-import expressStaticGzip from "express-static-gzip";
-import * as path from "path";
+const path = require("path");
+const express = require("express");
+const cors = require("cors");
+const expressStaticGzip = require("express-static-gzip");
 
 const corsAllowedOrigin = process.env.CORS_ALLOWED_ORIGIN || "http://localhost:3000";
 const basePath = "/meldekort-mikrofrontend";
-const __dirname = import.meta.dirname;
 const buildPath = path.resolve(__dirname, "../dist");
 const port = 7800;
 
@@ -18,7 +17,7 @@ server.use(
   expressStaticGzip(buildPath, {
     enableBrotli: true,
     orderPreference: ["br"],
-  }),
+  })
 );
 
 server.get(`${basePath}/internal/isAlive`, (req, res) => {
