@@ -1,15 +1,16 @@
 import React from "react";
 import { IntlProvider } from "react-intl";
+
+import enMessages from "../language/en.json";
 import nbMessages from "../language/nb.json";
 import nnMessages from "../language/nn.json";
-import enMessages from "../language/en.json";
 
 const loadMessages = (sprak: string) =>
   ({
     nb: nbMessages,
     nn: nnMessages,
     en: enMessages,
-  }[sprak]);
+  })[sprak];
 
 interface Props {
   currentLocale: string;

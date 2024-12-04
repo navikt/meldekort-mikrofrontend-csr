@@ -1,7 +1,8 @@
 import useSWRImmutable from "swr/immutable";
-import styles from "./App.module.css";
+
 import { fetcher } from "./api/api";
 import { meldekortApiUrl } from "./api/urls";
+import styles from "./App.module.css";
 import MeldekortEtterregistrering from "./domain/meldekort-etterregistrering/MeldekortEtterregistrering";
 import MeldekortPending from "./domain/meldekort-pending/MeldekortPending";
 import MeldekortReady from "./domain/meldekort-ready/MeldekortReady";

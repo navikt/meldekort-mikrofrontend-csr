@@ -1,8 +1,9 @@
 import { ChevronRightIcon, ExclamationmarkTriangleFillIcon } from "@navikt/aksel-icons";
-import styles from "./LinkCard.module.css";
-import { ReactElement } from "react";
 import { Heading } from "@navikt/ds-react";
+import { ReactElement } from "react";
 import { IntlShape, useIntl } from "react-intl";
+
+import styles from "./LinkCard.module.css";
 
 interface Props {
   href: string;

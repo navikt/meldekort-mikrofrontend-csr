@@ -1,8 +1,9 @@
-import React from "react";
+import "./App.module.css";
+
+import { onLanguageSelect } from "@navikt/nav-dekoratoren-moduler";
+
 import App from "./App";
 import LanguageProvider from "./providers/LanguageProvider";
-import "./App.module.css";
-import { onLanguageSelect } from "@navikt/nav-dekoratoren-moduler";
 
 let currentLocale = "nb";
 

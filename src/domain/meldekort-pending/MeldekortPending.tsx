@@ -1,4 +1,5 @@
 import { BodyLong } from "@navikt/ds-react";
+
 import { meldekortUrl } from "../../api/urls";
 import LinkCard from "../../components/card/LinkCard";
 import styles from "../../components/card/LinkCard.module.css";

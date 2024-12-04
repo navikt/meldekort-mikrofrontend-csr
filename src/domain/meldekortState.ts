@@ -1,5 +1,6 @@
-import { MeldekortDataFraApi, MeldekortData } from "../types/MeldekortType";
 import dayjs from "dayjs";
+
+import { MeldekortData, MeldekortDataFraApi } from "../types/MeldekortType";
 
 export const meldekortState = (meldekort: MeldekortDataFraApi) => {
   const isMeldekortBruker = isMeldekortbruker(meldekort);

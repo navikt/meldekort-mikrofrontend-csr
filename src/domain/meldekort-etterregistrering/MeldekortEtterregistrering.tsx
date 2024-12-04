@@ -1,5 +1,6 @@
 import { Alert, BodyLong } from "@navikt/ds-react";
 import { IntlShape, useIntl } from "react-intl";
+
 import { etterregistreringUrl } from "../../api/urls";
 import LinkCard from "../../components/card/LinkCard";
 import styles from "../../components/card/LinkCard.module.css";
