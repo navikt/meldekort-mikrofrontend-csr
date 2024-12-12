@@ -1,7 +1,7 @@
 FROM node:22-alpine
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
-WORKDIR usr/src/app
+WORKDIR /usr/src/app
 COPY server server/
 COPY dist dist/
 
