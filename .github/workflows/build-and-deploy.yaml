@@ -6,14 +6,13 @@ on:
       - "dev-*"
   workflow_dispatch:
 
-env:
-  "IMAGE": "ghcr.io/${{ github.repository }}/meldekort-mikrofrontend:${{ github.sha }}"
 jobs:
   build:
     name: Build and publish Docker image
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      id-token: write
       packages: write
     steps:
       - uses: actions/checkout@v4
