@@ -47,7 +47,7 @@
     "rollup-plugin-import-map": "3.0.0",
     "rollup-plugin-terser": "7.0.2",
     "typescript": "5.7.2",
-    "typescript-eslint": "8.18.1",
+    "typescript-eslint": "8.18.2",
     "vite": "6.0.6",
     "vite-plugin-compression": "0.5.1",
     "vite-plugin-css-injected-by-js": "3.5.2",
