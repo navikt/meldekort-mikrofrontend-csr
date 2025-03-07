@@ -27,7 +27,7 @@ spec:
     - "https://arbeid.ansatt.dev.nav.no/meldekort-mikrofrontend"
   resources:
     limits:
-      memory: 512Mi
+      memory: 256Mi
     requests:
-      cpu: "500m"
-      memory: 512Mi
+      cpu: 500m
+      memory: 128Mi
