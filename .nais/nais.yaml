@@ -23,10 +23,12 @@ spec:
     min: 2
     max: 4
   ingresses:
-    - "https://www.nav.no/meldekort-mikrofrontend"
+  {{#each ingresses as |url|}}
+     - {{url}}
+  {{/each}}
   resources:
     limits:
       memory: 512Mi
     requests:
       cpu: "500m"
-      memory: 512Mi
+      memory: 128Mi
