@@ -9,8 +9,10 @@
   "author": "navikt",
   "license": "MIT",
   "dependencies": {
+    "@navikt/oasis": "^3.8.0",
     "cors": "2.8.5",
     "express": "5.1.0",
-    "express-static-gzip": "3.0.0"
+    "express-static-gzip": "3.0.0",
+    "winston": "^3.17.0"
   }
 }

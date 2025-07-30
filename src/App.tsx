@@ -1,7 +1,7 @@
 import useSWRImmutable from "swr/immutable";
 
 import { fetcher } from "./api/api";
-import { meldekortApiUrl } from "./api/urls";
+import { proxyUrl } from "./api/urls";
 import styles from "./App.module.css";
 import MeldekortEtterregistrering from "./domain/meldekort-etterregistrering/MeldekortEtterregistrering";
 import MeldekortPending from "./domain/meldekort-pending/MeldekortPending";
@@ -10,7 +10,7 @@ import { isMeldekortbruker, meldekortState } from "./domain/meldekortState";
 import { MeldekortDataFraApi } from "./types/MeldekortType";
 
 function App() {
-  const { data: meldekortFraApi, error } = useSWRImmutable<MeldekortDataFraApi>(meldekortApiUrl, fetcher);
+  const { data: meldekortFraApi, error } = useSWRImmutable<MeldekortDataFraApi>(proxyUrl, fetcher);
 
   if (!meldekortFraApi) {
     return null;
