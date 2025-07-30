@@ -97,7 +97,8 @@ server.get(`${basePath}/proxy`, async (req, res) => {
   try {
     const meldekortregisterTokenRequest = await oasis.requestTokenxOboToken(token, meldekortregisterAudience);
     if (!meldekortregisterTokenRequest.ok) {
-      logger.error("meldekortregisterTokenRequest feilet", meldekortregisterTokenRequest.error);
+      // TODO: Uncomment når vi har dp-meldekortregister i prod
+      // logger.error("meldekortregisterTokenRequest feilet", meldekortregisterTokenRequest.error);
       // res.status(500).send("Feil ved henting av dp-meldekortregister token");
       // return;
     }
