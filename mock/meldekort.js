@@ -1,6 +1,6 @@
 export default [
   {
-    url: "/api/meldekortinfo",
+    url: "/proxy",
     method: "get",
     response: () => {
       return {

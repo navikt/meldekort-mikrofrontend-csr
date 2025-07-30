@@ -15,16 +15,10 @@ export const getEnvironment = (): "production" | "development" | "local" => {
 
 type EnvUrl = { local: string; development: string; production: string };
 
-const MELDEKORT_API_URL: EnvUrl = {
-  local: "http://localhost:3000/api/meldekortinfo",
-  development: "https://www.intern.dev.nav.no/tms-min-side-proxy/meldekort/api/person/meldekortstatus",
-  production: "https://www.nav.no/tms-min-side-proxy/meldekort/api/person/meldekortstatus",
-};
-
-const MELDEKORTREGISTER_URL: EnvUrl = {
-  local: "http://localhost:3000/api/meldekortinfo",
-  development: "https://www.intern.dev.nav.no/tms-min-side-proxy/dpmeldekort/meldekortstatus",
-  production: "https://www.nav.no/tms-min-side-proxy/dpmeldekort/meldekortstatus",
+const PROXY_URL: EnvUrl = {
+  local: "http://localhost:3000/proxy",
+  development: "https://www.intern.dev.nav.no/meldekort-mikrofrontend/proxy",
+  production: "https://www.nav.no/meldekort-mikrofrontend/proxy",
 };
 
 const MELDEKORT_URL: EnvUrl = {
@@ -39,7 +33,6 @@ const ETTERREGISTRERING_MELDEKORT_URL: EnvUrl = {
   production: "https://www.nav.no/meldekort/etterregistrer-meldekort",
 };
 
+export const proxyUrl = PROXY_URL[getEnvironment()];
 export const meldekortUrl = MELDEKORT_URL[getEnvironment()];
-export const meldekortApiUrl = MELDEKORT_API_URL[getEnvironment()];
-export const meldekortregisterUrl = MELDEKORTREGISTER_URL[getEnvironment()];
 export const etterregistreringUrl = ETTERREGISTRERING_MELDEKORT_URL[getEnvironment()];
