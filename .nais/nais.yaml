@@ -30,6 +30,10 @@ spec:
     requests:
       cpu: "500m"
       memory: 128Mi
+  observability:
+    logging:
+      destinations:
+        - id: elastic
   idporten:
     enabled: true
     sidecar:

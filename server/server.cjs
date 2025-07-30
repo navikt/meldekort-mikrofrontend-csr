@@ -3,6 +3,12 @@ const express = require("express");
 const cors = require("cors");
 const expressStaticGzip = require("express-static-gzip");
 const oasis = require("@navikt/oasis");
+const winston = require("winston");
+
+const logger = winston.createLogger({
+  format: process.env.NODE_ENV === "development" ? winston.format.simple() : winston.format.json(),
+  transports: new winston.transports.Console(),
+});
 
 const corsAllowedOrigin = process.env.CORS_ALLOWED_ORIGIN || "http://localhost:3000";
 const basePath = "/meldekort-mikrofrontend";
@@ -39,7 +45,7 @@ server.get(`${basePath}/proxy`, async (req, res) => {
 
   const validation = await oasis.validateIdportenToken(token);
   if (!validation.ok) {
-    console.error("Feil ved validering av token", validation.error);
+    logger.error("Feil ved validering av token", validation.error);
     res.status(500).send("Feil ved validering av token");
     return;
   }
@@ -50,7 +56,7 @@ server.get(`${basePath}/proxy`, async (req, res) => {
 
   const meldekortApiTokenRequest = await oasis.requestTokenxOboToken(token, meldekortApiAudience);
   if (!meldekortApiTokenRequest.ok) {
-    console.error("meldekortApiTokenRequest feilet", meldekortApiTokenRequest.error);
+    logger.error("meldekortApiTokenRequest feilet", meldekortApiTokenRequest.error);
     res.status(500).send("Feil ved henting av meldekort-api token");
     return;
   }
@@ -68,7 +74,7 @@ server.get(`${basePath}/proxy`, async (req, res) => {
   );
 
   if (!meldekortApiResponse.ok) {
-    console.error("meldekortApiResponse feilet med status " + meldekortApiResponse.status);
+    logger.error("meldekortApiResponse feilet med status " + meldekortApiResponse.status);
     res.status(500).send("Feil ved henting av data fra meldekort-api");
     return;
   }
@@ -91,7 +97,7 @@ server.get(`${basePath}/proxy`, async (req, res) => {
   try {
     const meldekortregisterTokenRequest = await oasis.requestTokenxOboToken(token, meldekortregisterAudience);
     if (!meldekortregisterTokenRequest.ok) {
-      console.error("meldekortregisterTokenRequest feilet", meldekortregisterTokenRequest.error);
+      logger.error("meldekortregisterTokenRequest feilet", meldekortregisterTokenRequest.error);
       // res.status(500).send("Feil ved henting av dp-meldekortregister token");
       // return;
     }
@@ -109,16 +115,18 @@ server.get(`${basePath}/proxy`, async (req, res) => {
     );
 
     if (!meldekortregisterResponse.ok && meldekortregisterResponse.status !== 404) {
-      console.error("meldekortregisterResponse feilet med status " + meldekortregisterResponse.status);
+      logger.error("meldekortregisterResponse feilet med status " + meldekortregisterResponse.status);
       // res.status(500).send("Feil ved henting av data fra dp-meldekortregister");
       // return;
     }
 
     if (meldekortregisterResponse.status !== 404) {
       meldekortFraDp = await meldekortregisterResponse.json();
+    } else {
+      logger.info("Person finnes ikke i dp-meldekortregister");
     }
   } catch (e) {
-    console.error("Feil ved henting av data fra dp-meldekortregister", e);
+    logger.error("Feil ved henting av data fra dp-meldekortregister", e);
   }
 
   const antallGjenstaaendeFeriedagerArena = meldekortFraArena ? meldekortFraArena.antallGjenstaaendeFeriedager : 0;
