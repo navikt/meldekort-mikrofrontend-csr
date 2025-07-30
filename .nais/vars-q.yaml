@@ -1,3 +1,9 @@
 ingresses:
   - "https://www.intern.dev.nav.no/meldekort-mikrofrontend"
   - "https://arbeid.ansatt.dev.nav.no/meldekort-mikrofrontend"
+
+meldekortApiName: "meldekort-api-q2"
+meldekortApiAudience: "dev-gcp:meldekort:meldekort-api-q2"
+meldekortApiUrl: "https://meldekort-api-q2.intern.dev.nav.no/meldekort/meldekort-api/api/person/meldekortstatus"
+meldekortregisterAudience: "dev-gcp:teamdagpenger:dp-meldekortregister"
+meldekortregisterUrl: "https://dp-meldekortregister.intern.dev.nav.no/meldekortstatus"

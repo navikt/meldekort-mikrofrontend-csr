@@ -6,8 +6,6 @@ metadata:
   labels:
     team: meldekort
 spec:
-  #envFrom:
-  #  - secret: meldekort-mikrofrontend-secrets
   image: {{ image }}
   port: 7800
   liveness:
@@ -32,3 +30,25 @@ spec:
     requests:
       cpu: "500m"
       memory: 128Mi
+  idporten:
+    enabled: true
+    sidecar:
+      enabled: true
+      level: Level3
+  tokenx:
+    enabled: true
+  env:
+    - name: MELDEKORT_API_AUDIENCE
+      value: "{{meldekortApiAudience}}"
+    - name: MELDEKORT_API_URL
+      value: "{{meldekortApiUrl}}"
+    - name: MELDEKORTREGISTER_AUDIENCE
+      value: "{{meldekortregisterAudience}}"
+    - name: MELDEKORTREGISTER_URL
+      value: "{{meldekortregisterUrl}}"
+  accessPolicy:
+    outbound:
+      rules:
+        - application: {{meldekortApiName}}
+        - application: dp-meldekortregister
+          namespace: teamdagpenger
