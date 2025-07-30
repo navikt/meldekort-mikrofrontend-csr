@@ -54,82 +54,16 @@ server.get(`${basePath}/proxy`, async (req, res) => {
   const meldekortApiAudience = process.env.MELDEKORT_API_AUDIENCE || "";
   const meldekortApiUrl = process.env.MELDEKORT_API_URL || "";
 
-  const meldekortApiTokenRequest = await oasis.requestTokenxOboToken(token, meldekortApiAudience);
-  if (!meldekortApiTokenRequest.ok) {
-    logger.error("meldekortApiTokenRequest feilet", meldekortApiTokenRequest.error);
-    res.status(500).send("Feil ved henting av meldekort-api token");
-    return;
-  }
-
-  const meldekortApiResponse = await fetch(
-    meldekortApiUrl,
-    {
-      method: "GET",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${meldekortApiTokenRequest.token}`
-      }
-    }
-  );
-
-  if (!meldekortApiResponse.ok) {
-    logger.error("meldekortApiResponse feilet med status " + meldekortApiResponse.status);
-    res.status(500).send("Feil ved henting av data fra meldekort-api");
-    return;
-  }
-
-  const meldekortFraArena = await meldekortApiResponse.json();
+  const meldekortFraArena = await hentMeldekortstatus(token, meldekortApiAudience, meldekortApiUrl, true);
 
 
   // dp-meldekortregister
-  let meldekortFraDp = {
-    antallGjenstaaendeFeriedager: 0,
-    etterregistrerteMeldekort: 0,
-    meldekort: 0,
-    nesteInnsendingAvMeldekort: null,
-    nesteMeldekort: null
-  };
-
   const meldekortregisterAudience = process.env.MELDEKORTREGISTER_AUDIENCE || "";
   const meldekortregisterUrl = process.env.MELDEKORTREGISTER_URL || "";
 
-  try {
-    const meldekortregisterTokenRequest = await oasis.requestTokenxOboToken(token, meldekortregisterAudience);
-    if (!meldekortregisterTokenRequest.ok) {
-      // TODO: Uncomment når vi har dp-meldekortregister i prod
-      // logger.error("meldekortregisterTokenRequest feilet", meldekortregisterTokenRequest.error);
-      // res.status(500).send("Feil ved henting av dp-meldekortregister token");
-      // return;
-    }
+  const meldekortFraDp = await hentMeldekortstatus(token, meldekortregisterAudience, meldekortregisterUrl, false);
 
-    const meldekortregisterResponse = await fetch(
-      meldekortregisterUrl,
-      {
-        method: "GET",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${meldekortregisterTokenRequest.token}`
-        }
-      }
-    );
-
-    if (!meldekortregisterResponse.ok && meldekortregisterResponse.status !== 404) {
-      logger.error("meldekortregisterResponse feilet med status " + meldekortregisterResponse.status);
-      // res.status(500).send("Feil ved henting av data fra dp-meldekortregister");
-      // return;
-    }
-
-    if (meldekortregisterResponse.status !== 404) {
-      meldekortFraDp = await meldekortregisterResponse.json();
-    } else {
-      logger.info("Person finnes ikke i dp-meldekortregister");
-    }
-  } catch (e) {
-    logger.error("Feil ved henting av data fra dp-meldekortregister", e);
-  }
-
+  // Sammenslåing
   const antallGjenstaaendeFeriedagerArena = meldekortFraArena ? meldekortFraArena.antallGjenstaaendeFeriedager : 0;
   const antallGjenstaaendeFeriedagerDp = meldekortFraDp ? meldekortFraDp.antallGjenstaaendeFeriedager : 0;
 
@@ -170,6 +104,51 @@ server.get(`${basePath}/proxy`, async (req, res) => {
 
 server.listen(port, () => console.log("Server listening on port " + port));
 
+async function hentMeldekortstatus(token, audience, url, logg) {
+  let meldekortstatus = {
+    antallGjenstaaendeFeriedager: 0,
+    etterregistrerteMeldekort: 0,
+    meldekort: 0,
+    nesteInnsendingAvMeldekort: null,
+    nesteMeldekort: null
+  };
+
+  try {
+    const tokenResult = await oasis.requestTokenxOboToken(token, audience);
+    if (!tokenResult.ok) {
+      if(logg) logger.error("tokenRequest feilet", tokenResult.error);
+      return meldekortstatus
+    }
+
+    const dataResponse = await fetch(
+      url,
+      {
+        method: "GET",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${tokenResult.token}`
+        }
+      }
+    );
+
+    if (!dataResponse.ok && dataResponse.status !== 404) {
+      if(logg) logger.error("dataResponse fra " + url + " feilet med status " + dataResponse.status);
+      return meldekortstatus
+    }
+
+    if (dataResponse.status !== 404) {
+      meldekortstatus = await dataResponse.json();
+    } else {
+      if(logg) logger.info("Person finnes ikke");
+      return meldekortstatus
+    }
+  } catch (e) {
+    logger.error("Feil ved henting av data fra " + url, e);
+  }
+
+  return meldekortstatus;
+}
 
 function finnNesteInnsendingAvMeldekort(
   nesteInnsendingAvMeldekortArena,
