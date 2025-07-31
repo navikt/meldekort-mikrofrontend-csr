@@ -1,8 +1,8 @@
-const path = require("path");
-const express = require("express");
-const cors = require("cors");
-const expressStaticGzip = require("express-static-gzip");
 const oasis = require("@navikt/oasis");
+const cors = require("cors");
+const express = require("express");
+const expressStaticGzip = require("express-static-gzip");
+const path = require("path");
 const winston = require("winston");
 
 const logger = winston.createLogger({
@@ -39,14 +39,14 @@ server.get(`${basePath}/proxy`, async (req, res) => {
   const token = req.headers.authorization?.replace("Bearer ", "");
 
   if (!token) {
-    res.status(500).send("Feil ved henting av token fra request");
+    res.status(401).send("Feil ved henting av token fra request");
     return;
   }
 
   const validation = await oasis.validateIdportenToken(token);
   if (!validation.ok) {
     logger.error("Feil ved validering av token", validation.error);
-    res.status(500).send("Feil ved validering av token");
+    res.status(401).send("Feil ved validering av token");
     return;
   }
 
