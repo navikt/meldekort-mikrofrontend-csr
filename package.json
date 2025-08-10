@@ -20,7 +20,7 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-intl": "7.1.11",
-    "swr": "2.3.4"
+    "swr": "2.3.5"
   },
   "devDependencies": {
     "@eslint/js": "9.32.0",
