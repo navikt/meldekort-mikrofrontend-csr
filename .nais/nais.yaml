@@ -33,6 +33,7 @@ spec:
   observability:
     logging:
       destinations:
+        - id: loki
         - id: elastic
   idporten:
     enabled: true
